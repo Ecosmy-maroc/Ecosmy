@@ -1,0 +1,190 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--sage:#6b7c5e;--cream:#f5f0e8;--dark:#2a2a1f;--olive:#8a9a6e;--warm:#c4956a;--text-main:#2a2a1f;--text-muted:#7a7a6a}
+  .site{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text-main);max-width:720px;margin:0 auto}
+
+  /* HERO avec image produit */
+  .hero{position:relative;overflow:hidden;border-bottom:0.5px solid rgba(107,124,94,0.3)}
+  .hero-img{width:100%;height:420px;object-fit:cover;object-position:center 20%;display:block}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom, rgba(42,42,31,0.1) 0%, rgba(42,42,31,0.65) 100%)}
+  .hero-content{position:absolute;bottom:0;left:0;right:0;padding:2rem}
+  .hero-badge{display:inline-block;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.8);border:0.5px solid rgba(255,255,255,0.5);padding:4px 12px;border-radius:2px;margin-bottom:1rem}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:3rem;line-height:1.1;color:white;margin-bottom:0.4rem}
+  .hero h1 em{font-style:italic;color:#c8d8b0}
+  .hero-tagline{font-size:0.95rem;color:rgba(255,255,255,0.85);font-weight:300;letter-spacing:0.08em;margin-bottom:1.5rem}
+  .hero-stats{display:flex;gap:1.8rem;margin-bottom:1.5rem}
+  .stat-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:#c8d8b0;line-height:1}
+  .stat-label{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.6)}
+  .hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+  .btn-primary{background:var(--sage);color:white;border:none;padding:10px 22px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:0.1em;cursor:pointer;border-radius:2px}
+  .btn-secondary{background:rgba(255,255,255,0.1);color:white;border:0.5px solid rgba(255,255,255,0.5);padding:10px 22px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:0.1em;cursor:pointer;border-radius:2px;backdrop-filter:blur(4px)}
+  .btn-primary:hover,.btn-secondary:hover{opacity:0.85}
+
+  .product-bar{display:flex;gap:1rem;padding:1rem 2rem;background:rgba(107,124,94,0.08);overflow-x:auto;border-bottom:0.5px solid rgba(107,124,94,0.2)}
+  .chip{white-space:nowrap;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);padding:4px 10px;border:0.5px solid rgba(107,124,94,0.4);border-radius:20px}
+
+  section{padding:2.5rem 2rem;border-bottom:0.5px solid rgba(107,124,94,0.2)}
+  .section-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--warm);margin-bottom:1rem}
+  .section-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.9rem;color:var(--dark);margin-bottom:1rem;line-height:1.2}
+
+  .ingredients-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:1rem}
+  .ing-card{background:white;border:0.5px solid rgba(107,124,94,0.25);border-radius:4px;padding:0.9rem}
+  .ing-name{font-size:13px;font-weight:500;color:var(--dark);margin-bottom:3px}
+  .ing-desc{font-size:11px;color:var(--text-muted);line-height:1.4}
+  .ing-dot{width:8px;height:8px;border-radius:50%;background:var(--sage);margin-bottom:8px}
+
+  .eco-score{background:white;border:0.5px solid rgba(107,124,94,0.3);border-radius:4px;padding:1.4rem;margin-top:1rem}
+  .score-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem}
+  .score-big{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--sage)}
+  .score-note{font-size:11px;color:var(--text-muted);text-align:right;line-height:1.4}
+  .criteria-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+  .criteria-name{font-size:12px;color:var(--text-main);width:120px;flex-shrink:0}
+  .bar-track{flex:1;height:3px;background:rgba(107,124,94,0.15);border-radius:2px;overflow:hidden}
+  .bar-fill{height:100%;background:var(--sage);border-radius:2px;transition:width 1s ease}
+  .criteria-score{font-size:11px;color:var(--sage);width:24px;text-align:right}
+
+  .compare-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:12px}
+  .compare-table th{text-align:left;padding:8px 10px;font-weight:400;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);border-bottom:0.5px solid rgba(107,124,94,0.2)}
+  .compare-table td{padding:8px 10px;border-bottom:0.5px solid rgba(107,124,94,0.1)}
+  .compare-table tr.hl td{background:rgba(107,124,94,0.06);font-weight:500;color:var(--sage)}
+  .tag-g{background:rgba(107,124,94,0.12);color:var(--sage);font-size:10px;padding:2px 6px;border-radius:2px}
+  .tag-b{background:rgba(196,149,106,0.12);color:var(--warm);font-size:10px;padding:2px 6px;border-radius:2px}
+
+  .process-steps{display:flex;flex-direction:column;gap:0;margin-top:1rem}
+  .process-step{display:flex;gap:14px;align-items:flex-start;padding:0.9rem 0;border-bottom:0.5px solid rgba(107,124,94,0.12)}
+  .step-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:rgba(107,124,94,0.3);line-height:1;flex-shrink:0;width:26px}
+  .step-content h4{font-size:13px;font-weight:500;color:var(--dark);margin-bottom:2px}
+  .step-content p{font-size:11px;color:var(--text-muted);line-height:1.5}
+
+  .cta{background:var(--dark);color:white;text-align:center;padding:3rem 2rem}
+  .cta h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2rem;margin-bottom:0.3rem;color:white}
+  .cta-sub{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:1.2rem;letter-spacing:0.06em}
+  .cta-tagline{font-size:13px;color:#c8d8b0;margin-bottom:1.5rem;font-style:italic;letter-spacing:0.04em}
+  .cta-price{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:#c8d8b0;margin-bottom:1.5rem}
+  .btn-cta{background:var(--sage);color:white;border:none;padding:12px 32px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:0.12em;cursor:pointer;border-radius:2px}
+  .btn-cta:hover{background:var(--olive)}
+
+  .footer-strip{display:flex;gap:0;padding:1rem 2rem;justify-content:center;flex-wrap:wrap;background:white;border-top:0.5px solid rgba(107,124,94,0.15)}
+  .footer-item{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);padding:0 0.8rem}
+  .footer-item:not(:last-child){border-right:0.5px solid rgba(107,124,94,0.2)}
+</style>
+
+<div class="site">
+
+  <div class="hero">
+    <img class="hero-img" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAMgAlgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDyYVItMpymoMydRS7aarU/NIBhXmnTSB1jUKAEXH1NIaY1MCNqjJpzGozTGOBpwpgp4oAeKetMBpymkBKtSoOaiWpoxUspE0Yq1GKhjFWIxWcjRE8Yq1HVeMVYjrJmiLUVXIaqRCrkIqGaIuw1dh9KpxdquRVBRbiqzHVaPrVmOgCcdKCaBSGgRG1QvVlQGkUMcAnk1XlwGIHTPFAEJ60Cg0gPNIZItTR1AlTpQBZiFW46qxVbj7VSJOQL1DZ/Wg==" alt="ECOSMY produit" onerror="this.style.display='none'; this.parentElement.querySelector('.hero-fallback').style.display='flex'">
+    <div class="hero-fallback" style="display:none;width:100%;height:420px;background:linear-gradient(135deg,#3d4f30,#2a2a1f);align-items:center;justify-content:center;font-family:Cormorant Garamond,serif;font-size:3rem;color:rgba(255,255,255,0.3);letter-spacing:0.3em">ECOSMY</div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Éco-conception · Safi, Maroc · EST</div>
+      <h1>ECOSMY<br><em>Déodorant naturel crème</em></h1>
+      <p class="hero-tagline">"Be fresh, Be éco-friendly"</p>
+      <div class="hero-stats">
+        <div><div class="stat-num">85%</div><div class="stat-label">Indice écologique</div></div>
+        <div><div class="stat-num">50g</div><div class="stat-label">Format crème</div></div>
+        <div><div class="stat-num">0%</div><div class="stat-label">Aluminium</div></div>
+      </div>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="sendPrompt('Quels sont tous les ingrédients ECOSMY et leurs bienfaits ?')">Découvrir ↗</button>
+        <button class="btn-secondary" onclick="sendPrompt('Comment mettre ECOSMY en vente en ligne ? Aide-moi à créer une boutique.')">Commander</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-bar">
+    <div class="chip">Sans aluminium</div>
+    <div class="chip">Verre recyclable</div>
+    <div class="chip">Huiles essentielles</div>
+    <div class="chip">ISO 22716</div>
+    <div class="chip">Karité · Coco</div>
+    <div class="chip">Artisanal</div>
+  </div>
+
+  <section>
+    <div class="section-label">Formulation naturelle</div>
+    <div class="section-title">Des ingrédients<br>que la nature offre</div>
+    <div class="ingredients-grid">
+      <div class="ing-card"><div class="ing-dot"></div><div class="ing-name">Huile de coco</div><div class="ing-desc">Base hydratante, propriétés antibactériennes</div></div>
+      <div class="ing-card"><div class="ing-dot"></div><div class="ing-name">Beurre de karité</div><div class="ing-desc">Texture crémeuse, nourrit la peau</div></div>
+      <div class="ing-card"><div class="ing-dot"></div><div class="ing-name">Bicarbonate</div><div class="ing-desc">Neutralise les odeurs naturellement</div></div>
+      <div class="ing-card"><div class="ing-dot"></div><div class="ing-name">HE lavande & citron</div><div class="ing-desc">Fragrance naturelle apaisante</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Impact environnemental</div>
+    <div class="section-title">Indice écologique : 85 %</div>
+    <div class="eco-score">
+      <div class="score-header">
+        <div class="score-big">34/40</div>
+        <div class="score-note">Matrice<br>éco-conception<br>EST Safi</div>
+      </div>
+      <div id="criteria-list"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Comparatif marché</div>
+    <div class="section-title">ECOSMY vs concurrence</div>
+    <table class="compare-table">
+      <thead><tr><th>Marque</th><th>Format</th><th>Naturel</th><th>Emballage</th><th>Prix MAD</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>ECOSMY</td><td>Crème</td><td><span class="tag-g">100%</span></td><td><span class="tag-g">Verre</span></td><td>30–35</td></tr>
+        <tr><td>Native</td><td>Stick</td><td><span class="tag-g">Oui</span></td><td><span class="tag-b">Plastique</span></td><td>120–180</td></tr>
+        <tr><td>Arm & Hammer</td><td>Stick</td><td><span class="tag-b">Partiel</span></td><td><span class="tag-b">Plastique</span></td><td>40–70</td></tr>
+        <tr><td>Nivea / Dove</td><td>Roll-on</td><td><span class="tag-b">Non</span></td><td><span class="tag-b">Plastique</span></td><td>25–50</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-label">Fabrication artisanale</div>
+    <div class="section-title">5 étapes, un soin naturel</div>
+    <div class="process-steps">
+      <div class="process-step"><div class="step-num">01</div><div class="step-content"><h4>Pesage des matières</h4><p>Précision des quantités pour 50g de produit fini</p></div></div>
+      <div class="process-step"><div class="step-num">02</div><div class="step-content"><h4>Chauffage au bain-marie</h4><p>Fusion douce des corps gras, contrôle température</p></div></div>
+      <div class="process-step"><div class="step-num">03</div><div class="step-content"><h4>Incorporation des poudres</h4><p>Bicarbonate et amidon sous agitation douce</p></div></div>
+      <div class="process-step"><div class="step-num">04</div><div class="step-content"><h4>Huiles essentielles</h4><p>Parfumage naturel lavande & citron en fin de process</p></div></div>
+      <div class="process-step"><div class="step-num">05</div><div class="step-content"><h4>Conditionnement verre</h4><p>Coulage en pot recyclable + étiquetage artisanal</p></div></div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h2>Le rituel naturel<br>commence ici</h2>
+    <p class="cta-sub">0 % Aluminium · 100 % Confiance · Un bocal pour la vie</p>
+    <p class="cta-tagline">"Be fresh, Be éco-friendly"</p>
+    <div class="cta-price">30–35 MAD</div>
+    <button class="btn-cta" onclick="sendPrompt('Génère-moi une page de commande pour ECOSMY avec formulaire de contact et panier.')">Commander ECOSMY →</button>
+  </div>
+
+  <div class="footer-strip">
+    <span class="footer-item">ISO 22716</span>
+    <span class="footer-item">ISO 16128</span>
+    <span class="footer-item">CE 1223/2009</span>
+    <span class="footer-item">EST Safi · Maroc</span>
+  </div>
+</div>
+
+<script>
+const img = document.querySelector('.hero-img');
+const b64 = "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAMgAlgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD" + "yYVItMpymoMydRS7aarU/NIBhXmnTSB1jUKAEXH1NIaY1MCNqjJpzGozTGOBpwpgp4oAeKetMBpymkBKtSoOaiWpoxUspE0Yq1GKhjFWIxWcjRE8Yq1HVeMVYjrJmiLUVXIaqRCrkIqGaIuw1dh9KpxdquRVBRbiqzHVaPrVmOgCcdKCaBSGgRG1QvVlQGkUMcAnk1XlwGIHTPFAEJ60Cg0gPNIZItTR1AlTpQBZiFW46qxVbj7VSJOQL1DZ/Wg==";
+img.src = "data:image/jpeg;base64," + b64;
+
+const criteria = [
+  {name:'Matières premières',score:5},{name:'Emballage',score:5},{name:'Utilisation',score:5},
+  {name:'Fin de vie',score:5},{name:'Fabrication',score:4},{name:'Impact global',score:4},
+  {name:'Transport',score:3},{name:'Origine matières',score:3}
+];
+const list = document.getElementById('criteria-list');
+criteria.forEach(c => {
+  const row = document.createElement('div');
+  row.className = 'criteria-row';
+  row.innerHTML = `<span class="criteria-name">${c.name}</span><div class="bar-track"><div class="bar-fill" data-pct="${c.score/5*100}" style="width:0%"></div></div><span class="criteria-score">${c.score}/5</span>`;
+  list.appendChild(row);
+});
+setTimeout(() => {
+  document.querySelectorAll('.bar-fill').forEach(b => { b.style.width = b.dataset.pct + '%'; });
+}, 300);
+</script>
