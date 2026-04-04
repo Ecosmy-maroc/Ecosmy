@@ -46,6 +46,13 @@
   .ing-dot{width:8px;height:8px;border-radius:50%;background:var(--sage);margin-bottom:8px}
   .ing-name{font-size:13px;font-weight:500;color:var(--dark);margin-bottom:3px}
   .ing-desc{font-size:11px;color:var(--text-muted);line-height:1.4}
+  
+/* ===== AVANTAGES PRODUIT ===== */
+  .avantages-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:1rem}
+  .avantage-card{background:white;border:0.5px solid rgba(74,124,89,0.2);border-radius:4px;padding:1rem;display:flex;flex-direction:column;gap:6px}
+  .avantage-icon{font-size:22px;line-height:1}
+  .avantage-title{font-size:13px;font-weight:500;color:var(--dark)}
+  .avantage-desc{font-size:11px;color:var(--text-muted);line-height:1.5}
 
   /* Score éco */
   .eco-score{background:white;border:0.5px solid rgba(74,124,89,0.3);border-radius:4px;padding:1.4rem;margin-top:1rem}
@@ -152,7 +159,35 @@
       <div class="ing-card"><div class="ing-dot"></div><div class="ing-name">HE lavande & citron</div><div class="ing-desc">Fragrance naturelle apaisante</div></div>
     </div>
   </section>
-
+  
+  <!-- AVANTAGES -->
+  <section>
+    <div class="section-label">Pourquoi ECOSMY ?</div>
+    <div class="section-title">Une alternative saine<br>et responsable</div>
+    <div class="avantages-grid">
+      <div class="avantage-card">
+        <div class="avantage-icon">🌿</div>
+        <div class="avantage-title">100 % naturel</div>
+        <div class="avantage-desc">Aucun ingrédient chimique agressif. Formulé avec des matières d'origine végétale.</div>
+      </div>
+      <div class="avantage-card">
+        <div class="avantage-icon">🫙</div>
+        <div class="avantage-title">Emballage éco</div>
+        <div class="avantage-desc">Pot en verre recyclable et réutilisable. Zéro plastique inutile.</div>
+      </div>
+      <div class="avantage-card">
+        <div class="avantage-icon">🚫</div>
+        <div class="avantage-title">Sans aluminium</div>
+        <div class="avantage-desc">Respecte votre peau et votre santé. Efficace 24h sans obstruction des pores.</div>
+      </div>
+      <div class="avantage-card">
+        <div class="avantage-icon">🤲</div>
+        <div class="avantage-title">Fait main à Safi</div>
+        <div class="avantage-desc">Fabriqué artisanalement par des étudiants de l'EST Safi avec passion.</div>
+      </div>
+    </div>
+  </section>
+  
   <!-- SCORE ECO -->
   <section>
     <div class="section-label">Impact environnemental</div>
